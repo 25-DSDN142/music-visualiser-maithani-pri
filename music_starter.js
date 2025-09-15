@@ -1,3 +1,6 @@
+let volumeData;
+let song;
+let currentRow = 0;
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -40,4 +43,22 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    textAlign(CENTER);
    textSize(vocal);
    text(words, width/2, height/3);
+}// Visual elements
+let particles = [];
+let waveOffset = 0;
+
+// Colors
+let deepBlue, lightBlue, oceanBlue;
+
+function preload() {
+  volumeData = loadTable('volumes.csv', 'csv', 'header');
+  song = loadSound('song.mp3');
 }
+
+function setup() {
+  createCanvas(1200, 800);
+  
+  // Colors closer to poster style
+  deepBlue = color(13, 71, 161);    // deep sky
+  lightBlue = color(180, 220, 255); // top sky
+  oceanBlue = color(20, 90, 160);   // ocean layers
