@@ -131,3 +131,35 @@ function drawCentralEye(vocals, bass) {
   
   pop();
 }
+
+function updateParticles(speed, sizeMult) {
+  for (let p of particles) {
+    p.update(speed);
+    p.display(sizeMult);
+  }
+}
+
+class OceanParticle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.size = random(2, 5);
+    this.speed = random(0.3, 1);
+    this.alpha = random(30, 100);
+  }
+  
+  update(speedMult) {
+    this.y -= this.speed * speedMult;
+    if (this.y < -20) {
+      this.y = height + 20;
+      this.x = random(width);
+    }
+  }
+  
+  display(sizeMult) {
+    let s = this.size * sizeMult;
+    fill(255, this.alpha);
+    noStroke();
+    ellipse(this.x, this.y, s, s);
+  }
+}
