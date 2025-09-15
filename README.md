@@ -5,5 +5,6 @@
 A P5JS framework for running a simple music visualizer, intended as a creative coding I assignment.
 
 Song details: // UPDATE THIS AS YOUR CHANGE YOUR SONG 
-Title = Just Dropped In (To See What Condition My Condition Was In)
-Artist = Kenny Rogers
+Song used: "Ocean Eyes" by Billie Eilish
+Artist: Billie Eilish
+I do not own the rights to this song. This is for educational purposes only.
