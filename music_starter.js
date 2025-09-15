@@ -68,3 +68,11 @@ function setup() {
     particles.push(new OceanParticle(random(width), random(height)));
   }
 }
+function drawSkyGradient() {
+  for (let y = 0; y < height; y++) {
+    let inter = map(y, 0, height, 0, 1);
+    let c = lerpColor(lightBlue, deepBlue, inter * 0.8);
+    stroke(c);
+    line(0, y, width, y);
+  }
+}
