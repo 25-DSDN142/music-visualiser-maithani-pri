@@ -76,3 +76,23 @@ function drawSkyGradient() {
     line(0, y, width, y);
   }
 }
+
+function drawOceanWaves(waveHeight) {
+  noStroke();
+  let oceanTop = height * 0.65; // ocean only bottom 1/3
+  
+  for (let layer = 0; layer < 4; layer++) {
+    let alpha = map(layer, 0, 3, 200, 80);
+    fill(20, 60 + layer*20, 140 + layer*10, alpha);
+    
+    beginShape();
+    vertex(0, height);
+    for (let x = 0; x <= width + 10; x += 8) {
+      let y = oceanTop + 
+              sin(x * 0.01 + waveOffset + layer) * waveHeight * (0.4 + layer*0.2);
+      vertex(x, y);
+    }
+    vertex(width, height);
+    endShape(CLOSE);
+  }
+}
