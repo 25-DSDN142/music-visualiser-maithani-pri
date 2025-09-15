@@ -68,6 +68,36 @@ function setup() {
     particles.push(new OceanParticle(random(width), random(height)));
   }
 }
+
+function draw() {
+  drawSkyGradient();
+
+  if (song.isPlaying() && currentRow < volumeData.getRowCount()) {
+    let vocals = volumeData.getNum(currentRow, 0);
+    let drums = volumeData.getNum(currentRow, 1);
+    let bass = volumeData.getNum(currentRow, 2);
+    let other = volumeData.getNum(currentRow, 3);
+    
+    // Map audio → visuals
+    let waveHeight = map(vocals, 0, 1, 10, 40);    
+    let particleSpeed = map(drums, 0, 1, 0.5, 2); 
+    let bubbleSize = map(other, 0, 1, 2, 8);   
+    
+    // Ocean (vocals drive waves)
+    drawOceanWaves(waveHeight);
+    
+    // Subtle particles
+    updateParticles(particleSpeed, bubbleSize);
+    
+    // Eye in center above ocean
+    drawCentralEye(vocals, bass);
+    
+    if (frameCount % 2 === 0) currentRow++;
+  }
+  
+  waveOffset += 0.015;
+}
+
 function drawSkyGradient() {
   for (let y = 0; y < height; y++) {
     let inter = map(y, 0, height, 0, 1);
