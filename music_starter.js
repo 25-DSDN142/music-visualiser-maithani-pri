@@ -62,3 +62,9 @@ function setup() {
   deepBlue = color(13, 71, 161);    // deep sky
   lightBlue = color(180, 220, 255); // top sky
   oceanBlue = color(20, 90, 160);   // ocean layers
+  
+  // Subtle particles (mist/bubbles)
+  for (let i = 0; i < 20; i++) {
+    particles.push(new OceanParticle(random(width), random(height)));
+  }
+}
