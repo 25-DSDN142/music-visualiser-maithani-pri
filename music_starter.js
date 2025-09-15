@@ -193,3 +193,15 @@ class OceanParticle {
     ellipse(this.x, this.y, s, s);
   }
 }
+
+function mousePressed() {
+  if (song.isPlaying()) song.pause();
+  else song.play();
+}
+
+function keyPressed() {
+  if (key === 'r' || key === 'R') {
+    currentRow = 0;
+    song.stop();
+  }
+}
