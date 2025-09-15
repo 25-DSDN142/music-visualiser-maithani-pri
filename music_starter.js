@@ -96,3 +96,38 @@ function drawOceanWaves(waveHeight) {
     endShape(CLOSE);
   }
 }
+
+function drawCentralEye(vocals, bass) {
+  push();
+  translate(width/2, height * 0.45); // float above ocean
+  
+  // Smaller base sizes
+  let eyeBase   = map(vocals, 0, 1, 40, 80);  
+  let pupilBase = map(bass,   0, 1, 8, 25);    
+  
+  // Breathing with bass
+  let pulse = sin(frameCount * 0.12) * (bass * 4);
+
+  let eyeSize   = eyeBase + pulse;
+  let pupilSize = pupilBase + pulse * 0.5;
+  
+  // Eye white
+  fill(255, 255, 255, 230);
+  noStroke();
+  ellipse(0, 0, eyeSize, eyeSize * 0.55);
+  
+  // Iris (ocean blue, alive with vocals)
+  let irisAlpha = map(vocals, 0, 1, 180, 255);
+  fill(30, 100, 200, irisAlpha);
+  ellipse(0, 0, eyeSize * 0.65, eyeSize * 0.35);
+  
+  // Pupil
+  fill(0);
+  ellipse(0, 0, pupilSize, pupilSize);
+  
+  // Sparkle
+  fill(255, 255, 255, 200);
+  ellipse(-pupilSize * 0.3, -pupilSize * 0.3, pupilSize * 0.3, pupilSize * 0.3);
+  
+  pop();
+}
